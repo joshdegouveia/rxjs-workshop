@@ -1,0 +1,65 @@
+<mat-toolbar class="d-flex justify-content-center" color="primary">
+  <h3 class="flex-fill">Original Count: {{ count$ | async }}</h3>
+  <h3 class="flex-fill">User Count: {{ manualCount$ | async }}</h3>
+  <button mat-raised-button color="secondary" (click)="destroy$.next(1)" class="me-2">
+    Stop Take Until
+  </button>
+  <button mat-raised-button color="secondary" (click)="incrementCount(manualCount$.value)">
+    Increment Count
+  </button>
+</mat-toolbar>
+
+<div class="m-2">
+  <mat-card class="d-flex flex-wrap flex-row justify-content-between mb-2 card-height">
+    <div class="d-flex flex-column align-items-center w-25">
+      <h4>Map</h4>
+      <div *ngFor="let val of map$ | async">
+        {{ val }}
+      </div>
+    </div>
+    <div class="d-flex flex-column align-items-center w-25">
+      <h4>Filter</h4>
+      <div *ngFor="let val of filter$ | async">
+        {{ val }}
+      </div>
+    </div>
+    <div class="d-flex flex-column align-items-center w-25">
+      <h4>Take Until</h4>
+      <div *ngFor="let val of takeUntil$ | async">
+        {{ val }}
+      </div>
+    </div>
+    <div class="d-flex flex-column align-items-center w-25">
+      <h4>Zip</h4>
+      <div *ngFor="let val of zip$ | async">
+        {{ val }}
+      </div>
+    </div>
+  </mat-card>
+  <mat-card class="d-flex flex-wrap flex-row justify-content-between card-height">
+    <div class="d-flex flex-column align-items-center w-25">
+      <h6>Combine Latest</h6>
+      <div *ngFor="let val of combineLatest$ | async">
+        {{ val }}
+      </div>
+    </div>
+    <div class="d-flex flex-column align-items-center w-25">
+      <h6>Switch Map</h6>
+      <div *ngFor="let val of switchMap$ | async">
+        {{ val }}
+      </div>
+    </div>
+    <div class="d-flex flex-column align-items-center w-25">
+      <h6>Merge Map</h6>
+      <div *ngFor="let val of mergeMap$ | async">
+        {{ val }}
+      </div>
+    </div>
+    <div class="d-flex flex-column align-items-center w-25">
+      <h6>Start With</h6>
+      <div *ngFor="let val of startWith$ | async">
+        {{ val }}
+      </div>
+    </div>
+  </mat-card>
+</div>

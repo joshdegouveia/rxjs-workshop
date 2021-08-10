@@ -7,7 +7,19 @@ import {
   BehaviorSubject,
   Subject
 } from 'rxjs';
-import { map, scan, take, filter, startWith, takeUntil } from 'rxjs/operators';
+import {
+  map,
+  scan,
+  take,
+  filter,
+  startWith,
+  takeUntil,
+  switchMap,
+  tap,
+  skip,
+  shareReplay,
+  mergeMap
+} from 'rxjs/operators';
 
 const collectValues = pipe(
   scan(
@@ -50,8 +62,24 @@ export class OperatorExamplesComponent {
     collectValues
   );
 
+  switchMap$ = this.manualCount$.pipe(
+    skip(1),
+    switchMap(() => this.count$),
+    collectValues
+  );
+
+  mergeMap$ = this.manualCount$.pipe(
+    skip(1),
+    mergeMap(() => this.count$),
+    collectValues
+  );
+
   startWith$ = this.count$.pipe(
     startWith(100),
     collectValues
   );
+
+  incrementCount(count: number) {
+    this.manualCount$.next(count + 1);
+  }
 }
