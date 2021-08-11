@@ -1,13 +1,13 @@
 <div class="d-flex flex-column justify-content-center align-items-center body-height">
   <div class="text-center">
     <h4>Last Click</h4>
-    <h4>X: Y:</h4>
+    <h4 *ngIf="lastClick$ | async as lastClick">X: {{ lastClick.x }} Y: {{ lastClick.y }}</h4>
   </div>
 
   <br>
 
   <div class="text-center">
     <h4>Mouse Position</h4>
-    <h4>X: Y:</h4>
+    <h4 *ngIf="mousePosition$ | async as mousePosition">X: {{ mousePosition.x }} Y: {{ mousePosition.y }}</h4>
   </div>
 </div>
